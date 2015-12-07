@@ -30,12 +30,6 @@ import com.example.util.ThreadFactoryUtils;
  */
 public class AsynchronousFileChannelTest {
 
-	// http://debop.blogspot.kr/2013/04/nio2-asynchronousfilechannel.html
-	
-	// 작은 크기의 파일을 읽을 때에는 JDK 1.7 의 Files.readAllLines() 를 사용하면 땡입니다.
-	// 하지만 무지 큰 파일을 읽기, 쓰기를 할 경우에는 Disk IO 작업만으로 많은 시간이 걸려, 다른 작업을 못하게 됩니다.
-	// 이럴땐 무조건 비동기 작업으로 변환해야 합니다.
-	
 	/**
 	 * 작은 파일 읽고 쓰기
 	 */
@@ -200,6 +194,6 @@ public class AsynchronousFileChannelTest {
 		} catch (InterruptedException e) {
 			// ignored
 		}
-		System.out.println(content);
+		System.out.println(content.toString());
 	}
 }

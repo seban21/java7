@@ -1,4 +1,4 @@
-package com.example.test.nio2;
+package com.example.test.concurrent;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
@@ -12,19 +12,6 @@ import com.example.util.TimeCheckedUtils;
  *
  */
 public class ForkJoinTest {
-	
-	// fork/join 프레임워크는 멀티프로세서의 성능을 이용할 수 있는 ExecutorService 인터페이스의 구현체입니다.
-	// 반복적으로 작은 조각으로 작업을 나누어 수행 할 수 있게 설계 되었습니다.
-	// 목표는 어플리케이션의 성능을 향상 시키기 위해 가능한 모든 프로세세를 이용하는 것입니다.
-	// ExecutorServcie를 구현함으로써 fork/join 프레임워크는 Thread Pool안의 Worker Thread에게 작업들을 분배합니다.
-	// fork/join 프레임워크는 Produce-Consumer 알고리즘과는 매우 다른 work-stealing 알고리즘을 이용합니다.
-	// 할 작업이 없는 Worker Thread는 아직 바쁜 다른 Thread의 작업을 훔쳐 올 수 있습니다.
-	// fork/join 프레임워크의 핵심은 AbstractExecutorService 클래스를 구현한 ForkJoinPool 클래스입니다.
-	// ForkJoinPool은 핵심적인 work-stealing 알고리즘을 구현하고 ForkJoinTask 프로세스들을 실행 할 수 있습니다.
-	// RecursiveTask(결과를 반환할 수 있는) 또는 RecursiveAction 같은 ForkJoinTask 하위 클래스를 랩핑할 수 있습니다.
-	
-	// http://www.oracle.com/technetwork/articles/java/fork-join-422606.html
-	// http://www.javacodegeeks.com/2011/02/java-forkjoin-parallel-programming.html
 	
 	@Test
 	public void testForkJoin() {
