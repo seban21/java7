@@ -18,8 +18,7 @@ public class ForkJoinTest {
 		TimeCheckedUtils check = new TimeCheckedUtils();
 		check.checkedStart();
 		
-		int n = 50;
-		
+		int n = 46;
 		int processors = Runtime.getRuntime().availableProcessors();
 		System.out.println("No of processors: " + processors);
 		
@@ -81,7 +80,6 @@ public class ForkJoinTest {
 				worker1.fork();
 				FibonacciTask worker2 = new FibonacciTask(new FibonacciProblem(problem.getN() - 2));
 				result = worker2.compute() + worker1.join();
-
 			}
 			return result;
 		}
