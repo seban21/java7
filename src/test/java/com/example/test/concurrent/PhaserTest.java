@@ -46,6 +46,7 @@ public class PhaserTest {
 		public void run() {
 			System.out.println(toString() + " 시작");
 			try {
+				// 작업중 ...
 				Thread.sleep(ThreadLocalRandom.current().nextInt(400, 800));
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -56,20 +57,6 @@ public class PhaserTest {
 		@Override
 		public String toString() {
 			return "Zombie #" + id;
-		}
-	}
-
-	private void execute(int type) {
-		List<Entity> entities = new ArrayList<>();
-		entities = new ArrayList<>();
-		entities.add(new Player());
-		entities.add(new Zombie());
-		entities.add(new Zombie());
-		entities.add(new Zombie());
-		if (type == 1) {
-			gameEngine1(entities);
-		} else {
-			gameEngine2(entities);
 		}
 	}
 
@@ -134,7 +121,7 @@ public class PhaserTest {
 	}
 
 	/**
-	 * Phaser
+	 * Phaser (단계별 작업)
 	 */
 	@Test
 	public void test1() {
@@ -147,5 +134,19 @@ public class PhaserTest {
 	@Test
 	public void test2() {
 		new PhaserTest().execute(2);
+	}
+	
+	private void execute(int type) {
+		List<Entity> entities = new ArrayList<>();
+		entities = new ArrayList<>();
+		entities.add(new Player());
+		entities.add(new Zombie());
+		entities.add(new Zombie());
+		entities.add(new Zombie());
+		if (type == 1) {
+			gameEngine1(entities);
+		} else {
+			gameEngine2(entities);
+		}
 	}
 }
