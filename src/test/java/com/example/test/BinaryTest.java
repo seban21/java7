@@ -35,8 +35,10 @@ public class BinaryTest {
 		System.out.println(TestUtils.toBinaryString(binary));
 		// 01010000101000101101000010100010
 		
-		// int binary100 = 0B0000_0000_0000_0000_0000_0000_0110_0100;
-		int binary100 = 100;
-		System.out.println(TestUtils.toBinaryString(binary100));
+		int binary100 = 0B0000_0000_0000_0000_0000_0000_0110_0100;
+		int int100 = 100;
+		if (binary100 == int100) {
+			System.out.println("동일");
+		}
 	}
 }
