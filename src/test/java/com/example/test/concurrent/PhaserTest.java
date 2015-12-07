@@ -89,7 +89,7 @@ public class PhaserTest {
 				}
 			}.start();
 		}
-		phaser.arriveAndDeregister(); // 다음 단계로 진행
+		phaser.arriveAndDeregister(); // 참여자를 실행 시킴
 		System.out.println("다음 단계로 진행...");
 	}
 	
@@ -123,7 +123,7 @@ public class PhaserTest {
 		}
 
 		while (!phaser.isTerminated()) { // 모든 참여자가 도착할때 까지 기다림
-			phaser.arriveAndAwaitAdvance(); // 다음 단계로 진행
+			phaser.arriveAndAwaitAdvance(); // 다른 task가 생성 될때까지 기다림
 			try {
 				Thread.sleep(1L);
 			} catch (InterruptedException e) {
