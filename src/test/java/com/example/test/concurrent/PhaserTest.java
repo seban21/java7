@@ -44,7 +44,7 @@ public class PhaserTest {
 		private final int id = ID_SOURCE.incrementAndGet();
 
 		public void run() {
-			System.out.println(toString() + "  시작");
+			System.out.println(toString() + " 시작");
 			try {
 				Thread.sleep(ThreadLocalRandom.current().nextInt(400, 800));
 			} catch (InterruptedException e) {
@@ -89,8 +89,8 @@ public class PhaserTest {
 				}
 			}.start();
 		}
-		phaser.arriveAndDeregister(); // 참여자를 실행 시킴
-		System.out.println("계속 진행함");
+		phaser.arriveAndDeregister(); // 다음 단계로 진행
+		System.out.println("다음 단계로 진행...");
 	}
 	
 	private void gameEngine2(List<Entity> entities) {
@@ -123,7 +123,7 @@ public class PhaserTest {
 		}
 
 		while (!phaser.isTerminated()) { // 모든 참여자가 도착할때 까지 기다림
-			phaser.arriveAndAwaitAdvance();
+			phaser.arriveAndAwaitAdvance(); // 다음 단계로 진행
 			try {
 				Thread.sleep(1L);
 			} catch (InterruptedException e) {
