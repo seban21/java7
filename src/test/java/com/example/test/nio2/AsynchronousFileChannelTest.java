@@ -1,5 +1,7 @@
 package com.example.test.nio2;
 
+import static com.example.test.TestUtils.DS;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -39,7 +41,7 @@ public class AsynchronousFileChannelTest {
 		String fileName = "smallFile.txt";
 		
 		String dir = TestUtils.TEST_DIR;
-		Path path = Paths.get(dir + "/" + fileName);
+		Path path = Paths.get(dir + DS + fileName);
 
 		try (BufferedWriter writer = Files.newBufferedWriter(path, Charset.forName("UTF-8"),
 				StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
@@ -63,7 +65,7 @@ public class AsynchronousFileChannelTest {
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
 		
-		Path file = Paths.get(dir + "/file" , "simple.txt");
+		Path file = Paths.get(dir + DS + "file" , "simple.txt");
 		String s = "DEADBEEF";
 		byte data[] = s.getBytes();
 		// write
@@ -105,7 +107,7 @@ public class AsynchronousFileChannelTest {
 		byte[] bytes = {65,65,65,65,65,65};
 		ByteBuffer buffer = ByteBuffer.wrap(bytes);
 		String dir = TestUtils.TEST_DIR;
-		Path path = Paths.get(dir + "/" + fileName);
+		Path path = Paths.get(dir + DS + fileName);
 		
 		ExecutorService executor = Executors.newSingleThreadExecutor(new ThreadFactoryUtils(
 				"WRITE", false, 5));
@@ -153,7 +155,7 @@ public class AsynchronousFileChannelTest {
 		String fileName = "bigFile.txt";
 		
 		String dir = TestUtils.TEST_DIR;
-		Path path = Paths.get(dir + "/" + fileName);
+		Path path = Paths.get(dir + DS + fileName);
 		
 		ExecutorService executor = Executors.newSingleThreadExecutor(new ThreadFactoryUtils(
 				"READ", false, 5));

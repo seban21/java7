@@ -1,5 +1,7 @@
 package com.example.test.nio2;
 
+import static com.example.test.TestUtils.DS;
+
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -32,7 +34,8 @@ public class FileGlobTest {
 	public void testFilter() throws Exception {
 		
 		String glob = "*.{java,class}";
-		Path path = Paths.get("./src/test/java/com/example/test");
+		Path path = Paths.get("." + DS + "src" + DS + "test" + DS + "java" + DS + "com" + DS
+				+ "example" + DS + "test");
 		try (DirectoryStream<Path> ds = Files.newDirectoryStream(path, glob)) {
 			for (Path file : ds) {
 				System.out.println(file.getFileName());

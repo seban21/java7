@@ -21,8 +21,10 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("start");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-		int threadNumber = Integer.parseInt(args[0]);
-		int workLoopNumber = Integer.parseInt(args[1]);
+		String ip = args[0];
+		int port = Integer.parseInt(args[1]);
+		int threadNumber = Integer.parseInt(args[2]);
+		int workLoopNumber = Integer.parseInt(args[3]);
 		//
 		Config config = new Config();
 		config.maxActive = threadNumber + 2;
@@ -45,7 +47,7 @@ public class Main {
 			.setKeepAlive(false);
 		//
 		ConnectionPoolFactory poolFactory = new ConnectionPoolFactory(networkConfig, config,
-				"127.0.0.1", 8080);
+				ip, port);
 		ExecutorService executorService = Executors.newCachedThreadPool(new ThreadFactoryUtils(
 				"IO", false, 5));
 		ArrayList<Future<Long>> list = new ArrayList<Future<Long>>();
@@ -65,9 +67,7 @@ public class Main {
 		for (Future<Long> future : list) {
 			try {
 				nanos = nanos + future.get();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} catch (ExecutionException e) {
+			} catch (InterruptedException | ExecutionException e) {
 				e.printStackTrace();
 			}
 		}

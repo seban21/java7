@@ -1,5 +1,7 @@
 package com.example.test.nio2;
 
+import static com.example.test.TestUtils.DS;
+
 import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
@@ -34,8 +36,6 @@ import com.example.util.ThreadFactoryUtils;
  */
 public class WatchServiceTest {
 
-	// http://freeminderhuni.blogspot.kr/2013/09/7-nio2-6.html
-
 	// ENTRY_CREATE : 디렉토리 항목이 생성됐다.
 	// 해당 디렉토리에 있는 파일 이름 바뀌거나 이동한 경우에도 발생
 	// ENTRY_DELETE : 디렉토리 항목이 삭제.
@@ -62,7 +62,7 @@ public class WatchServiceTest {
 		final WatchService ws = fs.newWatchService();
 		final Map<WatchKey, Path> keys = new ConcurrentHashMap<>();
 
-		reg(fs.getPath("bin/com/example/test"), keys, ws);
+		reg(fs.getPath("bin" + DS + "com" + DS + "example" + DS + "test"), keys, ws);
 		reg(fs.getPath("lib"), keys, ws);
 
 		service.execute(new Runnable() {
@@ -108,7 +108,7 @@ public class WatchServiceTest {
 			}
 		});
 		while (true) {
-			Path p = fs.getPath("bin/com/example/test/end");
+			Path p = fs.getPath("bin" + DS + "com" + DS + "example" + DS + "test" + DS + "end");
 			if (Files.isReadable(p)) {
 				ws.close();
 				service.shutdownNow();

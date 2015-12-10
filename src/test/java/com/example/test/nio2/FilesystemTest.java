@@ -1,5 +1,7 @@
 package com.example.test.nio2;
 
+import static com.example.test.TestUtils.DS;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -119,7 +121,7 @@ public class FilesystemTest {
 	@Test
 	public void testJar() throws Exception {
 		
-		Path jarfile = Paths.get("./lib/junit-4.12.jar");
+		Path jarfile = Paths.get("." + DS + "lib" + DS + "junit-4.12.jar");
 		FileSystem fs = FileSystems.newFileSystem(jarfile, null);
 		
 		Path mf = fs.getPath("/META-INF/MANIFEST.MF");

@@ -27,9 +27,11 @@ public class AsyncServerBootstrap {
 
 	public void bind(String ip, int port) {
 		try {
-			listener.bind(new InetSocketAddress(ip, port), 100);
+			int backlog = 100;
+			listener.bind(new InetSocketAddress(ip, port), backlog);
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.exit(0);
 			return;
 		}
 

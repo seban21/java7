@@ -28,11 +28,13 @@ public class ReaderCompletionHandler implements CompletionHandler<Integer, ByteB
 	 */
 	@Override
 	public void completed(Integer readLength, ByteBuffer buffer) {
-		System.out.println("readLength:" + readLength);
-		if (readLength < 1 || Packet.BUFFER_SIZE_DEFAULT == readLength) {
+		
+		if (readLength < 1 || readLength == Packet.BUFFER_SIZE_DEFAULT) {
 			close();
 			return;
 		}
+		System.out.println("readLength:" + readLength);
+		
 		buffer.flip();
 		// byte startPacket = buffer.get(); // 시작 패킷 알림
 		buffer.get();
@@ -50,6 +52,8 @@ public class ReaderCompletionHandler implements CompletionHandler<Integer, ByteB
 			System.out.println("write length:" + future.get());
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
+			close();
+			return;
 		}
 
 		ByteBuffer dst = ByteBuffer.allocate(Packet.BUFFER_SIZE_DEFAULT);

@@ -1,5 +1,6 @@
 package com.example.test;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
@@ -16,9 +17,8 @@ import java.util.List;
  *
  */
 public class TestUtils {
-	
-	public final static String TEST_DIR = System.getProperty("user.home") + "/tmp_java7";
-	
+	public final static String DS = File.separator;
+	public final static String TEST_DIR = System.getProperty("user.home") + DS + "tmp_java7";
 	
 	public static String toBinaryString(byte b) {
 		String s = Integer.toBinaryString(b);
@@ -54,7 +54,7 @@ public class TestUtils {
 			}
 			
 			if (Files.exists(Paths.get(dir , "file"))) {
-//			if (Files.exists(Paths.get(dir + "/file/tmp" + "empty.txt"),
+//			if (Files.exists(Paths.get(dir + DS + "file" + DS + "tmp" + "empty.txt"),
 //				new LinkOption[] { LinkOption.NOFOLLOW_LINKS }) == false) {
 				// 하위 디렉터리 포함 삭제
 				Files.walkFileTree(Paths.get(dir, "file"), new SimpleFileVisitor<Path>() {
@@ -75,14 +75,15 @@ public class TestUtils {
 				});
 			}
 			
-			Files.createDirectory(Paths.get(dir + "/file"));
-			Files.createDirectory(Paths.get(dir + "/file/copy"));
-			Files.createDirectory(Paths.get(dir + "/file/move"));
-			Files.createDirectory(Paths.get(dir + "/file/tmp"));
-			Files.createDirectory(Paths.get(dir + "/file/tmp/tmp2"));
-			Files.createDirectory(Paths.get(dir + "/file/tmp/tmp2/tmp3"));
+			Files.createDirectory(Paths.get(dir + DS + "file"));
+			Files.createDirectory(Paths.get(dir + DS + "file" + DS + "copy"));
+			Files.createDirectory(Paths.get(dir + DS + "file" + DS + "move"));
+			Files.createDirectory(Paths.get(dir + DS + "file" + DS + "tmp"));
+			Files.createDirectory(Paths.get(dir + DS + "file" + DS + "tmp" + DS + "tmp2"));
+			Files.createDirectory(Paths.get(dir + DS + "file" + DS + "tmp" + DS + "tmp2" + DS
+					+ "tmp3"));
 			
-			Path path = Paths.get(dir + "/file", "java7.txt");
+			Path path = Paths.get(dir + DS + "file", "java7.txt");
 			List<String> list = new ArrayList<>();
 			list.add("jdk1.7.0");
 			list.add("qwerty");
@@ -96,13 +97,12 @@ public class TestUtils {
 					Files.write(path, s.getBytes("UTF-8"), StandardOpenOption.CREATE_NEW);
 				}
 			}
-			Files.write(Paths.get(dir + "/file/tmp/", "README.txt"), "TEST".getBytes("UTF-8"),
+			Files.write(Paths.get(dir + DS + "file" + DS + "tmp" + DS, "README.txt"), "TEST".getBytes("UTF-8"),
 					StandardOpenOption.CREATE_NEW);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(0);
 		}
-		
 	}
 	
 	public final static byte[] TMP_JPEG_BYTES = { (byte) -1, (byte) -40, (byte) -1, (byte) -32, (byte) 0,

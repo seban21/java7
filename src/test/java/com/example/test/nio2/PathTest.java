@@ -1,5 +1,7 @@
 package com.example.test.nio2;
 
+import static com.example.test.TestUtils.DS;
+
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,14 +26,14 @@ public class PathTest {
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
 		
-		File file = new File(dir + "/file/java7.txt");
-		Path path = Paths.get(dir + "/file/java7.txt");
+		File file = new File(dir + DS + "file" + DS + "java7.txt");
+		Path path = Paths.get(dir + DS + "file" + DS + "java7.txt");
 		File file2 = path.toFile();
 		Path path2 = file.toPath();
 		
 		int nameCount = path.getNameCount();
-		Path pathTmp = Paths.get(dir + "/file/tmp/README.txt");
-		Path rootPath = Paths.get(dir + "/file/java7.txt");
+		Path pathTmp = Paths.get(dir + DS + "file" + DS + "tmp" + DS + "README.txt");
+		Path rootPath = Paths.get(dir + DS + "file" + DS + "java7.txt");
 		
 		System.out.println(path.toString());
 		System.out.println(path.getFileName().toString());

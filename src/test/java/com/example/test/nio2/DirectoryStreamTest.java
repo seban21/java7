@@ -1,5 +1,7 @@
 package com.example.test.nio2;
 
+import static com.example.test.TestUtils.DS;
+
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
@@ -23,7 +25,7 @@ public class DirectoryStreamTest {
 	@Test
 	public void testDirFilter() throws Exception {
 		
-		Path path = Paths.get("./");
+		Path path = Paths.get("." + DS);
 		DirectoryStream.Filter<Path> dsFilter = new DirectoryStream.Filter<Path>() {
 
 			@Override
@@ -54,7 +56,7 @@ public class DirectoryStreamTest {
 	@Test
 	public void testFilter1K() throws Exception {
 		
-		Path path = Paths.get("./");
+		Path path = Paths.get("." + DS);
 		DirectoryStream.Filter<Path> dsFilter = new DirectoryStream.Filter<Path>() {
 
 			@Override
@@ -78,7 +80,7 @@ public class DirectoryStreamTest {
 	@Test
 	public void testFilterToDay() throws Exception {
 		
-		Path path = Paths.get("./");
+		Path path = Paths.get("." + DS);
 		DirectoryStream.Filter<Path> dsFilter = new DirectoryStream.Filter<Path>() {
 
 			@Override

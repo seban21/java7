@@ -1,5 +1,7 @@
 package com.example.test.nio2;
 
+import static com.example.test.TestUtils.DS;
+
 import static java.nio.file.StandardCopyOption.ATOMIC_MOVE;
 import static java.nio.file.StandardCopyOption.COPY_ATTRIBUTES;
 import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
@@ -17,7 +19,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 import org.junit.Test;
 
 import com.example.test.TestUtils;
-
 
 /**
  * @author gimbyeongsu
@@ -48,7 +49,7 @@ public class FilesTest {
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
 		
-		Files.createDirectory(Paths.get(dir + "/file", "mkdir"));
+		Files.createDirectory(Paths.get(dir + DS + "file", "mkdir"));
 	}
 	
 	/**
@@ -59,7 +60,7 @@ public class FilesTest {
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
 		
-		Files.createFile(Paths.get(dir + "/file/tmp", "java7.txt"));
+		Files.createFile(Paths.get(dir + DS + "file" + DS + "tmp", "java7.txt"));
 	}
 	
 	/**
@@ -70,7 +71,7 @@ public class FilesTest {
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
 
-		Path path = Paths.get(dir + "/file", "tmp.jpeg");
+		Path path = Paths.get(dir + DS + "file", "tmp.jpeg");
 		Files.write(path, TestUtils.TMP_JPEG_BYTES, CREATE_NEW);
 	}
 	
@@ -79,12 +80,11 @@ public class FilesTest {
 	 */
 	@Test
 	public void testMove() throws Exception {
-
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
 		
-		Path sourcePath = Paths.get(dir + "/file", "java7.txt");
-		Path targetPath = Paths.get(dir + "/file/move", "java7.txt");
+		Path sourcePath = Paths.get(dir + DS + "file", "java7.txt");
+		Path targetPath = Paths.get(dir + DS + "file" + DS + "move", "java7.txt");
 
 		Files.move(sourcePath, targetPath, REPLACE_EXISTING, ATOMIC_MOVE);
 	}
@@ -98,8 +98,8 @@ public class FilesTest {
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
 		
-		Path sourcePath = Paths.get(dir + "/file", "java7.txt");
-		Path targetPath = Paths.get(dir + "/file/copy", "java7.txt");
+		Path sourcePath = Paths.get(dir + DS + "file", "java7.txt");
+		Path targetPath = Paths.get(dir + DS + "file" + DS + "copy", "java7.txt");
 
 		Files.copy(sourcePath, targetPath, COPY_ATTRIBUTES);
 	}
@@ -113,11 +113,11 @@ public class FilesTest {
 		String dir = TestUtils.TEST_DIR;
 		testFileWrite();
 		
-		Path path = Paths.get(dir + "/file", "tmp.jpeg");
+		Path path = Paths.get(dir + DS + "file", "tmp.jpeg");
 		// Files.delete(path);
 		Files.deleteIfExists(path); // return boolean
 		
-		Path dirDel = Paths.get(dir + "/file", "copy");
+		Path dirDel = Paths.get(dir + DS + "file", "copy");
 		Files.delete(dirDel);
 	}
 	
@@ -130,8 +130,8 @@ public class FilesTest {
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
 		
-		Path target = Paths.get(dir + "/file", "java7.txt");
-		Path link = Paths.get(dir + "/file", "java7.txt.link");
+		Path target = Paths.get(dir + DS + "file", "java7.txt");
+		Path link = Paths.get(dir + DS + "file", "java7.txt.link");
 		
 		Files.createSymbolicLink(link, target);
 		
@@ -147,7 +147,7 @@ public class FilesTest {
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
 		
-		Path tempDirectory = Files.createTempDirectory(Paths.get(dir + "/file"), "");
+		Path tempDirectory = Files.createTempDirectory(Paths.get(dir + DS + "file"), "");
 		String dirPath = tempDirectory.toString();
 		System.out.println(dirPath);
         // /Users/gimbyeongsu/tmp_java7/file/7917053882407349208
@@ -165,7 +165,7 @@ public class FilesTest {
 	public void testWalkFileTree() throws Exception {
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
-		Path path = Paths.get(dir + "/file");
+		Path path = Paths.get(dir + DS + "file");
 		
 		Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
 			
@@ -208,7 +208,7 @@ public class FilesTest {
 		
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
-		Path path = Paths.get(dir + "/file");
+		Path path = Paths.get(dir + DS + "file");
 		
 		Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
 			
@@ -246,7 +246,7 @@ public class FilesTest {
 		testCreateEmptyFile();
 		
 		final String findFile = File.separator + "java7.txt";
-		Path path = Paths.get(dir + "/file");
+		Path path = Paths.get(dir + DS + "file");
 		Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
 
 			@Override

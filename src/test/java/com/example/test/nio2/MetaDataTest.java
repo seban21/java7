@@ -1,5 +1,7 @@
 package com.example.test.nio2;
 
+import static com.example.test.TestUtils.DS;
+
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -67,7 +69,7 @@ public class MetaDataTest {
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
 		
-		Path path = Paths.get(dir + "/file", "java7.txt");
+		Path path = Paths.get(dir + DS + "file", "java7.txt");
 		BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
 
 		StringBuilder sb = new StringBuilder();
@@ -109,7 +111,7 @@ public class MetaDataTest {
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
 		
-		Path path = Paths.get(dir + "/file", "java7.txt");
+		Path path = Paths.get(dir + DS + "file", "java7.txt");
 		FileOwnerAttributeView attrs = Files.getFileAttributeView(path,
 				FileOwnerAttributeView.class);
 		UserPrincipal owner = attrs.getOwner();
@@ -125,7 +127,7 @@ public class MetaDataTest {
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
 		
-		Path path = Paths.get(dir + "/file", "java7.txt");
+		Path path = Paths.get(dir + DS + "file", "java7.txt");
 		
 		PosixFileAttributeView fileAttributeView = Files.getFileAttributeView(path,
 				PosixFileAttributeView.class);
@@ -150,8 +152,8 @@ public class MetaDataTest {
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
 		
-		Path path = Paths.get(dir + "/file", "java7.txt");
-		Path newPath = Paths.get(dir + "/file" ,"java7.new.txt");
+		Path path = Paths.get(dir + DS + "file", "java7.txt");
+		Path newPath = Paths.get(dir + DS + "file" ,"java7.new.txt");
 		
 		// 1970년 1월 1일 오전 09:00:00
 		Files.setLastModifiedTime(path, FileTime.fromMillis(0));

@@ -1,5 +1,7 @@
 package com.example.test;
 
+import static com.example.test.TestUtils.DS;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,7 +27,7 @@ public class AutoResCloseTest {
 		FileInputStream fin = null;
 		BufferedReader br = null;
 		try {
-			fin = new FileInputStream(dir + "/" + "file/" + "java7.txt");
+			fin = new FileInputStream(dir + DS + "file" + DS + "java7.txt");
 			br = new BufferedReader(new InputStreamReader(fin));
 			if (br.ready()) {
 				String line1 = br.readLine();
@@ -59,7 +61,7 @@ public class AutoResCloseTest {
 		
 		// AutoClosable, Closeable 인터페이스를 구현한 경우
 		// try(resource)내의 resource들에 대해 close()를 수행
-		try (FileInputStream fin = new FileInputStream(dir + "/" + "file/" + "java7.txt");
+		try (FileInputStream fin = new FileInputStream(dir + DS + "file" + DS + "java7.txt");
 				BufferedReader br = new BufferedReader(new InputStreamReader(fin));) {
 			if (br.ready()) {
 				String line1 = br.readLine();

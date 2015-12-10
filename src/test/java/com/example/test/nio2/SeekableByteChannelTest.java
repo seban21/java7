@@ -1,5 +1,7 @@
 package com.example.test.nio2;
 
+import static com.example.test.TestUtils.DS;
+
 import java.nio.ByteBuffer;
 import java.nio.channels.SeekableByteChannel;
 import java.nio.file.Files;
@@ -25,7 +27,7 @@ public class SeekableByteChannelTest {
 		
 		String dir = TestUtils.TEST_DIR;
 		int bufferSize = 8;
-		Path path = Paths.get(dir + "/file", "java7.txt");
+		Path path = Paths.get(dir + DS + "file", "java7.txt");
 
 		try (SeekableByteChannel sbc = Files.newByteChannel(path)) {
 			ByteBuffer buffer = ByteBuffer.allocate(bufferSize);
@@ -57,7 +59,7 @@ public class SeekableByteChannelTest {
 		String dir = TestUtils.TEST_DIR;
 		TestUtils.fileTest();
 
-		Path path = Paths.get(dir + "/file", "java7.txt");
+		Path path = Paths.get(dir + DS + "file", "java7.txt");
 		final String newLine = System.getProperty("line.separator");
 
 		try (SeekableByteChannel sbc = Files.newByteChannel(path, StandardOpenOption.WRITE)) {
